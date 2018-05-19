@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\platforms",
+    "\\platforms\\android\\app",
+    "\\platforms\\android\\app\\build",
+    "\\platforms\\android\\app\\build\\outputs",
+    "\\platforms\\android\\app\\build\\outputs\\apk",
+    "\\platforms\\android\\app\\build\\outputs\\apk\\debug",
+    "\\platforms\\windows"
+  ],
+  "SelectedNode": "\\platforms\\windows\\CordovaApp.sln",
+  "PreviewInSolutionExplorer": false
+}

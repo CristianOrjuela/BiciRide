@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0033)http://localhost:3000/index.html# -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="./Geolocalización_files/index2.css">
+        <title>Geolocalización</title>
+    <script src="./Geolocalización_files/cordova_plugins.js.descarga"></script><script src="./Geolocalización_files/CameraConstants.js.descarga"></script><script src="./Geolocalización_files/CameraPopoverOptions.js.descarga"></script><script src="./Geolocalización_files/Camera.js.descarga"></script><script src="./Geolocalización_files/CameraProxy.js.descarga"></script><script type="text/javascript" charset="UTF-8" src="./Geolocalización_files/common.js.descarga"></script><script type="text/javascript" charset="UTF-8" src="./Geolocalización_files/util.js.descarga"></script><script type="text/javascript" charset="UTF-8" src="./Geolocalización_files/stats.js.descarga"></script></head>
+
+    <body>
+        <!--<header>
+
+               <ul id="mainMenu">
+                    <li><img src="img/un.png" width="40" height="42"></li>
+                    <li><img src="img/logo.png" width="40" height="42"></li>
+                    <li><div class="container" onclick="myFunction(this)">
+                          <div class="bar1"></div>
+                          <div class="bar2"></div>
+                          <div class="bar3"></div>
+                        </div>
+                        </li>
+
+
+
+                </ul>      
+            </div>
+              
+
+        </header>-->
+        
+            <header>
+                <a href="http://localhost:3000/index.html#" id="logo"> </a>        
+                <nav>
+                    <a href="http://localhost:3000/index.html#" id="menu-icon"></a>
+                    <ul>
+                        <li><a href="http://localhost:3000/index.html#" class="current">Home</a></li>
+                        <li><a href="http://localhost:3000/index.html#">About</a></li>
+                        <li><a href="http://localhost:3000/index.html#">Service</a></li>
+                        <li><a href="http://localhost:3000/index.html#">Problems</a></li>
+                        <li><a href="http://localhost:3000/index.html#">Contact</a></li>
+                    </ul>
+                </nav>
+
+
+
+
+
+            </header>
+
+            <div class="section1">
+                <img class="center1" src="./Geolocalización_files/logo3.png">
+              
+
+            <hr>
+
+
+                <div>
+                    <button type="button" class="btn">Log in</button>
+                    <button type="button" class="btn">Sign up</button>
+                </div>
+            </div>  
+        <script type="text/javascript" src="./Geolocalización_files/socket.io.js.descarga"></script><script type="text/javascript">//
+// Reload the app if server detects local change
+//
+(function() {
+    var url = 'http://' + document.location.host + '/__api__/autoreload';
+
+    function postStatus() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('post', url, true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.onreadystatechange = function() {
+            if (this.readyState === 4 && /^[2]/.test(this.status)) {
+            }
+        };
+        xhr.send();
+    }
+
+    function checkForReload() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', url, true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.onreadystatechange = function() {
+            if (this.readyState === 4 && /^[2]/.test(this.status)) {
+                var response = JSON.parse(this.responseText);
+                if (response.content.outdated) {
+                    postStatus();
+                    window.location.reload();
+                }
+            }
+        };
+        xhr.send();
+    }
+
+    setInterval(checkForReload, 1000 * 3);
+})(window);
+</script>
+<script type="text/javascript">(function(window) {
+    var socket = io('http://' + document.location.host);
+
+    // Copy the functions to avoid stack overflow
+    var previousConsole = Object.assign({}, window.console);
+
+    // Overwrite these individually to preserve other log properties
+    window.console.log = function() {
+        if(previousConsole.log) {
+            previousConsole.log.apply(previousConsole, arguments);
+        }
+        socket.emit('console','log', Array.prototype.slice.call(arguments).join(' '));
+    };
+
+    window.console.warn = function() {
+        if(previousConsole.warn) {
+            previousConsole.warn.apply(previousConsole, arguments);
+        }
+        socket.emit('console','warn', Array.prototype.slice.call(arguments).join(' '));
+    };
+
+    window.console.error = function() {
+        if(previousConsole.error) {
+            previousConsole.error.apply(previousConsole, arguments);
+        }
+        socket.emit('console','error', Array.prototype.slice.call(arguments).join(' '));
+    };
+
+    window.console.assert = function(assertion) {
+        if(previousConsole.assert) {
+            previousConsole.assert.apply(previousConsole, arguments);
+        }
+        if(assertion) {
+            socket.emit('console','assert', Array.prototype.slice.call(arguments, 1).join(' '));
+        }
+    };
+})(window);
+</script>
+<script type="text/javascript">//
+// Proxy
+///
+// Intercept XHR calls that would violate single-origin policy.
+// These requests will be proxied through the server.
+//
+(function() {
+    var xhr = {};
+    xhr.open = XMLHttpRequest.prototype.open;
+
+    XMLHttpRequest.prototype.open = function(method, url) {
+        var parser = document.createElement('a');
+        parser.href = url;
+
+        // WP8 does not set hostname on some XHRs
+        if (!parser.hostname) {
+            parser.hostname = window.location.hostname;
+        }
+
+        // proxy the cross-origin request
+        if (!parser.hostname.match(window.location.hostname)) {
+            url = '/proxy/' + encodeURIComponent(url);
+        }
+
+        xhr.open.apply(this, arguments);
+    };
+})(window);
+</script>
+<script type="text/javascript">//
+// Push notification
+//
+(function() {
+    document.addEventListener('deviceready', function() {
+        var oldPushNotification;
+        if (window.PushNotification) {
+            oldPushNotification = window.PushNotification;
+            window.PushNotification.init = function(options) {
+                if (options.android) {
+                    options.android.senderID = "996231231186";
+                    options.android.icon = "pushicon";
+                    options.android.iconColor = "blue";
+                }
+                var pgdevPush = new oldPushNotification.PushNotification(options);
+                pgdevPush.on('registration', function(data) {
+                    console.log('Device Push ID: \n' + data.registrationId);
+                });
+                return pgdevPush;
+            };
+        }
+    });
+})(window);
+</script>
+
+
+        <!--<div id="map">-->
+            
+            
+        
+        <script type="text/javascript" src="./Geolocalización_files/cordova.js.descarga"></script>
+        <script type="text/javascript" src="./Geolocalización_files/index.js.descarga"></script>
+        <script src="./Geolocalización_files/js" async="" defer=""></script>     
+
+
+    
+
+      <footer class="foot">
+         <!--<div>
+                    <ul class="footer-social">
+                    <li><a href="https://www.facebook.com/CristianOrjuelaV">
+                        <i class="im im-facebook" aria-hidden="true"></i>
+                        <span>FB</span>
+                    </a></li>
+                    <li><a href="https://twitter.com/kcristian_o">
+                        <i class="im im-twitter" aria-hidden="true"></i>
+                        <span>TW</span>
+                    </a></li>
+                    <li><a href="https://www.instagram.com/cristian_orjuela8/?hl=es">
+                        <i class="im im-instagram" aria-hidden="true"></i>
+                        <span>IG</span>
+                    </a></li>
+                </ul>
+                    
+
+            </div>
+          </div>-->
+          <br>
+          <div class="centrar">
+              <div>Copyright © 2018. All rights reserved.</div>
+              <div>Contact information: <a href="mailto:biciride@example.com">
+              bicirideun@gmail.com</a>.</div>
+              <div>Bogotá, 2018</div>
+          </div>
+        </footer>
+    
+
+    
+</body></html>
